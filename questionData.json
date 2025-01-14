@@ -1,0 +1,86 @@
+[
+  {
+    "question": "Soru1ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss  weffwfw efb weıfb wıuebfı wbefı bweıfb  wıuefb  ıwuebfuı  webfıu  wbef  wefb  weıufbıuwbfasduıweufewbf",
+    "type": "empty",
+    "selectedOption": "",
+    "count": 1,
+    "options": [
+      {
+        "option": "A",
+        "isCorrect": false,
+        "value": "optionA"
+      },
+      {
+        "option": "B",
+        "isCorrect": false,
+        "value": "optionB"
+      },
+      {
+        "option": "C",
+        "isCorrect": false,
+        "value": "optionC"
+      },
+      {
+        "option": "D",
+        "isCorrect": true,
+        "value": "optionD"
+      }
+    ]
+  },
+  {
+    "question": "Soru2",
+    "type": "empty",
+    "selectedOption": "",
+    "count": 2,
+    "options": [
+      {
+        "option": "A",
+        "isCorrect": false,
+        "value": "optionA"
+      },
+      {
+        "option": "B",
+        "isCorrect": false,
+        "value": "optionB"
+      },
+      {
+        "option": "C",
+        "isCorrect": true,
+        "value": "optionC"
+      },
+      {
+        "option": "D",
+        "isCorrect": false,
+        "value": "optionD"
+      }
+    ]
+  },
+  {
+    "question": "Soru3",
+    "type": "empty",
+    "selectedOption": "",
+    "count": 3,
+    "options": [
+      {
+        "option": "A",
+        "isCorrect": true,
+        "value": "optionA"
+      },
+      {
+        "option": "B",
+        "isCorrect": false,
+        "value": "optionB"
+      },
+      {
+        "option": "C",
+        "isCorrect": false,
+        "value": "optionC"
+      },
+      {
+        "option": "D",
+        "isCorrect": false,
+        "value": "optionD"
+      }
+    ]
+  }
+]

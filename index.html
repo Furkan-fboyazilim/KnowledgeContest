@@ -1,11 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+
 </head>
+
 <body>
-    
+
+    <div class="container">
+
+        <h1>Bilgi Yarışması</h1>
+        <div id="continueGameContainer" class="gameContainer">
+            <div id="messageBox" class="message-box">
+            </div>
+            <div class="infoContest">
+                <p id="infoQuestionCount" class="infoQuestion"></p>
+                <p id="contestTime" class="infoQuestion"></p>
+            </div>
+            <div class="continueGameContainer">
+                <div id="questionContainer">
+                    <p id="question"></p>
+                </div>
+                <div id="optionContainer" class="optionContainer">
+
+                </div>
+                <div class="questionPreviewContainer">
+                    <button id="prevButton" class="btnAction" onclick="goPreviousQuestion()" disabled>Önceki</button>
+                    <div id="question-preview" class="questionPreview">
+                    </div>
+                    <button id="nextButton" class="btnAction" onclick="goNextQuestion()">Sonraki</button>
+                </div>
+            </div>
+
+        </div>
+        <div id="startGameContainer" class="startGameContainer">
+            <div class="resultCountInfo">
+                <p class="infoResult">DOĞRU SAYISI:<span id="correctCount"> -</span></p>
+                <p class="infoResult">YANLIŞ SAYISI:<span id="wrongCount"> -</span></p>
+                <p class="infoResult">BOŞ SAYISI:<span id="emptyCount"> -</span></p>
+            </div>
+            <button id="btnStartGame" onclick="startGame()">Oyuna Başla</button>
+        </div>
+
+
+
+
+
+    </div>
+
+    <script src="script.js"></script>
 </body>
+
 </html>

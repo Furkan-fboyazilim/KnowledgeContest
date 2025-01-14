@@ -1,0 +1,11 @@
+
+-> puan göstergesi   2/12 gibi
+-> süre   Kalan süre geri sayımlı
+-> 4 şık bir sorudan oluşan kutu
+-> doğru cevap yeşil. yanlış cevap kırmızı
+-> oyuna başla butonu
+-> sabit mockData sorulara
+-> soru numaraları
+-> Alt tarafta sorulara geri dinmek için dairesel butonlar ve bu butonların renginide soru cevabına göre yaz
+-> müzikli soru 
+-> işaretlenen şık transactionlu şekilde seç
