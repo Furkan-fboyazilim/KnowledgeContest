@@ -14,36 +14,40 @@
     <div class="container">
 
         <h1>Bilgi Yarışması</h1>
-        <div id="continueGameContainer" class="gameContainer">
+        <div id="game-container" class="gameContainer">
             <div id="messageBox" class="message-box">
             </div>
+
             <div class="infoContest">
-                <p id="infoQuestionCount" class="infoQuestion"></p>
-                <p id="contestTime" class="infoQuestion"></p>
+                <p id="info-question-count" class="infoQuestion"></p>
+                <p id="contest-time" class="infoQuestion"></p>
             </div>
+
             <div class="continueGameContainer">
+
                 <div id="questionContainer">
                     <p id="question"></p>
                 </div>
-                <div id="optionContainer" class="optionContainer">
-
+                <div id="option-container" class="optionContainer">
                 </div>
+
                 <div class="questionPreviewContainer">
-                    <button id="prevButton" class="btnAction" onclick="goPreviousQuestion()" disabled>Önceki</button>
+                    <button id="previous-btn" class="btnAction" onclick="goPreviousQuestion()" disabled>Önceki</button>
                     <div id="question-preview" class="questionPreview">
                     </div>
-                    <button id="nextButton" class="btnAction" onclick="goNextQuestion()">Sonraki</button>
+                    <button id="next-btn" class="btnAction" onclick="goNextQuestion()">Sonraki</button>
                 </div>
             </div>
 
         </div>
-        <div id="startGameContainer" class="startGameContainer">
-            <div class="resultCountInfo">
-                <p class="infoResult">DOĞRU SAYISI:<span id="correctCount"> -</span></p>
-                <p class="infoResult">YANLIŞ SAYISI:<span id="wrongCount"> -</span></p>
-                <p class="infoResult">BOŞ SAYISI:<span id="emptyCount"> -</span></p>
+
+        <div id="start-game-container" class="startGameContainer">
+            <div id="resultcount-info" class="resultCountInfo">
+                <p class="infoResult">DOĞRU SORU SAYISI:<span id="correct-count"> -</span></p>
+                <p class="infoResult">YANLIŞ SORU SAYISI:<span id="wrong-count"> -</span></p>
+                <p class="infoResult">BOŞ SORU SAYISI:<span id="empty-count"> -</span></p>
             </div>
-            <button id="btnStartGame" onclick="startGame()">Oyuna Başla</button>
+            <button id="start-game-btn" onclick="startGame()">Yarışmaya Başla</button>
         </div>
 
 

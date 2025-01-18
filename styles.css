@@ -13,6 +13,10 @@ body {
   background: #ffffff;
   padding: 20px;
   border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+h1 {
+  color: #057e07;
 }
 .gameContainer {
   display: none;
@@ -20,17 +24,34 @@ body {
   width: 80vh;
 }
 .startGameContainer {
-  height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 20vh;
   width: 40vh;
 }
-#btnStartGame {
+.infoQuestion {
+  font-size: 20px;
+  color: #057e07;
+  font-weight: bold;
+}
+.infoResult {
+  font-size: 20px;
+  font-weight: bold;
+}
+.infoResult span {
+  font-size: 25px;
+  color: #057e07;
+  margin-left: 1vh;
+}
+#start-game-btn {
   border-radius: 10px;
-  border: 2px solid #007bff;
+  border: 2px solid #057e07;
+  color: #057e07;
   background-color: #ffffff;
-  font-size: large;
   padding: 10px;
-  height: 5vh;
-  width: 20vh;
+  width: 25vh;
+  font-size: 20px;
 }
 #questionContainer {
   background-color: #f9f9f9;
@@ -73,12 +94,9 @@ body {
   font-size: 18px;
   font-weight: bold;
   text-align: center;
-  background-color: #007bff;
-  color: #fff;
+  border: 1px solid black;
   border-radius: 50%;
   line-height: 40px;
-  height: 40px;
-  width: 40px;
 }
 
 .optionText {
@@ -113,7 +131,7 @@ body {
   height: 100%;
 }
 .btnAction {
-  background-color: #007bff;
+  background-color: #057e07;
   color: #fff;
   border: none;
   margin: 5px;
@@ -144,28 +162,16 @@ body {
   z-index: 1000;
 }
 
-#prevButton:disabled {
+#previous-btn:disabled {
   opacity: 0.3;
 }
-#nextButton:disabled {
+#next-btn:disabled {
   opacity: 0.3;
   color: #065507;
 }
-.infoQuestion {
-  font-size: 20px;
-  color: #007bff;
-  font-weight: bold;
-}
-.infoResult {
-  font-size: 20px;
-  font-weight: bold;
-}
-.infoResult span {
-  font-size: 25px;
-  color: #007bff;
-  margin-left: 1vh;
-}
+
 .resultCountInfo {
+  display: none;
   text-align: left;
   margin: 5vh;
 }
