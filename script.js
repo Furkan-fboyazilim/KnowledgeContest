@@ -2,7 +2,7 @@ const gameContainerDiv = document.getElementById("game-container");
 const startGameContainerDiv = document.getElementById("start-game-container");
 const contestTimeText = document.getElementById("contest-time")
 const oQuestion = document.getElementById("question");
-const questionContainerDiv = document.getElementById("questionContainer");
+const questionContainerDiv = document.getElementById("question-container");
 const optionContainerDiv = document.getElementById("option-container");
 const optionA = document.getElementById("optionA");
 const optionB = document.getElementById("optionB");
@@ -17,17 +17,21 @@ const wrongCountText = document.getElementById("wrong-count")
 const emptyCountText = document.getElementById("empty-count")
 const resultCountInfoDiv = document.getElementById("resultcount-info")
 const startGameButton = document.getElementById("start-game-btn")
+const messageBox = document.getElementById('message-box');
 
-var questionData = null
-let contestTime = 10;
+let questionData = null
+let contestTime = 30;
 let questionIndex = 0
 let contestInterval;
 
 const fetchQuestionData = async () => {
-    const response = await fetch('questionData.json');
-    const data = await response.json();
-    questionData = data
-}
+    try {
+        const response = await fetch("questionData.json");
+        questionData = await response.json();
+    } catch (error) {
+        showMessage("Soru verileri yüklenemedi.");
+    }
+};
 
 const startGame = async () => {
     await fetchQuestionData()
@@ -43,70 +47,72 @@ const startGame = async () => {
 
 const setContestTime = () => {
     contestTime--;
-    if (contestTime == 0) {
-        correctCountText.innerHTML = `${questionData.filter(x => x.type == "correct").length}`
-        wrongCountText.innerHTML = `${questionData.filter(x => x.type == "wrong").length}`
-        emptyCountText.innerHTML = `${questionData.filter(x => x.type == "empty").length}`
-
-        startGameButton.innerText = "Tekrar Oyunu Başlat"
-        resultCountInfoDiv.style.display = "block"
-        gameContainerDiv.style.display = "none";
-        startGameContainerDiv.style.display = "block";
-
-        clearInterval(contestInterval);
-        resetContest()
+    if (contestTime === 0) {
+        endGame();
     }
     contestTimeText.innerHTML = `SÜRE: ${contestTime}`;
 }
 
+const endGame = () => {
+    correctCountText.innerHTML = `${questionData.filter(x => x.status == "correct").length}`
+    wrongCountText.innerHTML = `${questionData.filter(x => x.status == "wrong").length}`
+    emptyCountText.innerHTML = `${questionData.filter(x => x.status == "empty").length}`
+
+    startGameButton.innerText = "Tekrar Oyunu Başlat"
+    resultCountInfoDiv.style.display = "block"
+    gameContainerDiv.style.display = "none";
+    startGameContainerDiv.style.display = "block";
+
+    clearInterval(contestInterval);
+    resetContest();
+};
+
 const resetContest = () => {
-    contestTime = 10
+    contestTime = 30
     questionIndex = 0
     updateButtonStates()
 }
 
 const setQuestionAndOptions = () => {
-    const data = questionData[questionIndex]
-    const audioElement = setCreateAudioElement('sevdindenelerettin.mp3')
-    // questionContainerDiv.prepend(audioElement);
+    questionContainerDiv.innerHTML = "";
+    const { type, question, options, selectedOption } = questionData[questionIndex];
 
-    optionContainerDiv.innerHTML = ""
-    oQuestion.innerHTML = data.question;
-    data.options.forEach((element) => {
-        const option = document.createElement("div");
-        const optionName = document.createElement("span");
-        const optionText = document.createElement("p");
+    if (type.name === "audio") {
+        questionContainerDiv.appendChild(setCreateAudioElement(type.value));
+    } else if (type.name === "image") {
+        questionContainerDiv.appendChild(setCreateImageElement(type.value));
+    }
 
-        option.className = "option"
-        optionName.className = "optionName"
-        optionText.className = "optionText"
+    const questionTxt = document.createElement("p");
+    questionTxt.innerHTML = question;
+    questionContainerDiv.appendChild(questionTxt);
 
-        optionName.innerHTML = element.option;
-        optionText.innerHTML = element.value;
+    optionContainerDiv.innerHTML = "";
+    options.forEach(({ option, value, isCorrect }) => {
+        const optionDiv = document.createElement("div");
+        optionDiv.className = "option";
 
-        if (data.selectedOption) {
-            option.style.backgroundColor = element.isCorrect ? 'green' : element.value === data.selectedOption ? 'red' : '';
+        optionDiv.innerHTML = `
+            <span class="optionName">${option}</span>
+            <p class="optionText">${value}</p>
+        `;
+
+        if (selectedOption) {
+            optionDiv.style.backgroundColor = isCorrect ? 'green' : value === selectedOption ? 'red' : '';
         }
 
+        optionDiv.addEventListener("click", () => {
+            onPressOption(optionDiv);
+            setQuestionPreview();
+        });
 
-        option.addEventListener("click", () => {
-            onPressOption(option)
-            setDisabledControl()
-            setQuestionPreview()
-        })
+        optionContainerDiv.appendChild(optionDiv);
+    });
 
-        option.appendChild(optionName);
-        option.appendChild(optionText);
-
-        optionContainerDiv.appendChild(option);
-
-        if(!!data.selectedOption) setDisabledControl()
-    })
-
-}
+    if (selectedOption) setDisabledControl();
+};
 
 const setCreateAudioElement = (path) => {
-    // Audio elementini oluşturun
     const audioElement = document.createElement('audio');
     audioElement.controls = true;
     const sourceElement = document.createElement('source');
@@ -115,40 +121,47 @@ const setCreateAudioElement = (path) => {
     audioElement.appendChild(sourceElement);
     return audioElement
 }
+const setCreateImageElement = (path) => {
+    const imgElement = document.createElement('img');
+    imgElement.src = path;
+    imgElement.style.width = "30vh";
+    imgElement.style.height = "20vh";
+    return imgElement
+}
 const onPressOption = (selectedOption) => {
     const currentQuestion = questionData[questionIndex];
     const correctOption = currentQuestion.options.find(option => option.isCorrect);
-
     const selectedOptionText = selectedOption.querySelector('.optionText').textContent;
-    questionData[questionIndex].selectedOption = selectedOptionText
 
-    if (selectedOptionText === correctOption.value) {
-        questionData[questionIndex].type = "correct"
-        selectedOption.style.backgroundColor = 'green';
-    } else {
-        questionData[questionIndex].type = "wrong"
-        selectedOption.style.backgroundColor = 'red';
+    questionData[questionIndex].selectedOption = selectedOptionText;
+    questionData[questionIndex].status = selectedOptionText === correctOption.value ? "correct" : "wrong";
 
-        const correctElement = Array.from(optionContainerDiv.children).find(option => {
-            return option.querySelector('.optionText').textContent === correctOption.value;
-        });
+    selectedOption.style.backgroundColor = selectedOptionText === correctOption.value ? 'green' : 'red';
+
+    if (selectedOptionText !== correctOption.value) {
+        const correctElement = Array.from(optionContainerDiv.children).find(option =>
+            option.querySelector('.optionText').textContent === correctOption.value
+        );
         correctElement.style.backgroundColor = 'green';
     }
-}
+
+    setDisabledControl();
+};
 const setDisabledControl = () => {
-    Array.from(optionContainerDiv.children).forEach(x => x.style.pointerEvents = 'none');
+    Array.from(optionContainerDiv.children).forEach(option => option.style.pointerEvents = 'none');
 }
 const setQuestionPreview = () => {
     questionPreviewDiv.innerHTML = ''; // Önceki içeriği temizle
     questionData.forEach((element, index) => {
         const infoDiv = document.createElement("div");
-        infoDiv.className = "infoPreview"
-        infoDiv.className += " " + element.type;
-        infoDiv.id = index + "Question";
+        infoDiv.className = `infoPreview ${element.status}`;
+        infoDiv.id = `${index}Question`;
 
         infoDiv.addEventListener('click', () => {
             questionIndex = index
             setQuestionAndOptions()
+            setQuestionCount(questionData[questionIndex].count)
+            updateButtonStates()
         })
 
         questionPreviewDiv.appendChild(infoDiv);
@@ -178,7 +191,6 @@ function updateButtonStates() {
     questionIndex === questionData.length - 1 ? nextButton.disabled = true : nextButton.disabled = false;
 }
 function showMessage(message) {
-    const messageBox = document.getElementById('messageBox');
     messageBox.innerHTML = message;
     messageBox.classList.add('visible');
     setTimeout(() => {
@@ -187,6 +199,5 @@ function showMessage(message) {
 }
 
 function hideMessage() {
-    const messageBox = document.getElementById('messageBox');
     messageBox.classList.remove('visible');
 }

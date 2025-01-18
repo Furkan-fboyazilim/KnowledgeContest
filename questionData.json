@@ -1,85 +1,88 @@
 [
   {
-    "question": "Soru1ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss  weffwfw efb weıfb wıuebfı wbefı bweıfb  wıuefb  ıwuebfuı  webfıu  wbef  wefb  weıufbıuwbfasduıweufewbf",
-    "type": "empty",
+    "question": "Dinlediğiniz seste ki enstrüman nedir?",
+    "type": { "name": "audio", "value": "sevdindenelerettin.mp3" },
+    "status": "empty",
     "selectedOption": "",
     "count": 1,
     "options": [
       {
         "option": "A",
         "isCorrect": false,
-        "value": "optionA"
+        "value": "Keman"
       },
       {
         "option": "B",
         "isCorrect": false,
-        "value": "optionB"
+        "value": "Bağlama"
       },
       {
         "option": "C",
         "isCorrect": false,
-        "value": "optionC"
+        "value": "Piyanao"
       },
       {
         "option": "D",
         "isCorrect": true,
-        "value": "optionD"
+        "value": "Cümbüş"
       }
     ]
   },
   {
-    "question": "Soru2",
-    "type": "empty",
+    "question": "Fotoğrafta gördüğünüz oyun hangi oyundur?",
+    "type": { "name": "image", "value": "images.jpg" },
+    "status": "empty",
     "selectedOption": "",
     "count": 2,
     "options": [
       {
         "option": "A",
         "isCorrect": false,
-        "value": "optionA"
+        "value": "Futbol"
       },
       {
         "option": "B",
         "isCorrect": false,
-        "value": "optionB"
+        "value": "Bilardo"
       },
       {
         "option": "C",
         "isCorrect": true,
-        "value": "optionC"
+        "value": "Bowling"
       },
       {
         "option": "D",
         "isCorrect": false,
-        "value": "optionD"
+        "value": "Tabu"
       }
     ]
   },
   {
-    "question": "Soru3",
-    "type": "empty",
+    "question": "Hangisi bir programlama dili değildir?",
+    "type": { "name": "text", "value": "" },
+    "status": "empty",
     "selectedOption": "",
     "count": 3,
     "options": [
       {
         "option": "A",
-        "isCorrect": true,
-        "value": "optionA"
+        "isCorrect": false,
+        "value": "React"
       },
       {
         "option": "B",
         "isCorrect": false,
-        "value": "optionB"
+        "value": "JavaScript"
       },
       {
         "option": "C",
-        "isCorrect": false,
-        "value": "optionC"
+        "isCorrect": true,
+        "value": "Windows"
       },
       {
         "option": "D",
         "isCorrect": false,
-        "value": "optionD"
+        "value": "C#"
       }
     ]
   }

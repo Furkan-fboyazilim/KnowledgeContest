@@ -14,6 +14,7 @@ body {
   padding: 20px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: relative;
 }
 h1 {
   color: #057e07;
@@ -27,7 +28,7 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 20vh;
+  min-height: 25vh;
   width: 40vh;
 }
 .infoQuestion {
@@ -53,12 +54,22 @@ h1 {
   width: 25vh;
   font-size: 20px;
 }
-#questionContainer {
+#question-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
   background-color: #f9f9f9;
   border: 1px solid #ccc;
   border-radius: 10px;
-  width: 100%;
-  height: 25vh;
+  min-height: 15vh;
+  padding: 10px;
+}
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 .optionContainer {
@@ -158,7 +169,7 @@ h1 {
 .wrong {
   background-color: red;
 }
-#messageBox {
+#message-box {
   z-index: 1000;
 }
 
@@ -193,4 +204,12 @@ h1 {
 /* Görünür hale getirmek için */
 .message-box.visible {
   display: block;
+}
+
+#createdUser {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 10px;
+  color: orange;
 }
